@@ -25,20 +25,20 @@ import (
     "text/scanner"
 )
 
-// A splitter is used to split an input string into tokens.
+// Splitter is used to split an input string into tokens.
 type Splitter struct {
     scanner     *scanner.Scanner
     buffer      *bytes.Buffer
     hasNext     bool
 }
 
-// Conveinence method for splitting a string into tokens.  This is equivalent to the code:
+// Split is a conveinence method for splitting a string into tokens.  It is equivalent to the code:
 //      New(str).Split()
 func Split(str string) []string {
     return New(str).Split()
 }
 
-// Creates a new splitter for a given string.
+// New creates a new splitter for a given string.
 func New(str string) *Splitter {
     s := new(scanner.Scanner)
     s.Init(strings.NewReader(str))
@@ -47,7 +47,7 @@ func New(str string) *Splitter {
     return sp
 }
 
-// Returns the next token from the splitter.  This returns the token and whether or not
+// Next returns the next token from the splitter.  This returns the token and whether or not
 // the token was successfully scanned.  If the end of the string is encountered, the second
 // return value will be false.
 func (s *Splitter) Next() (token string, hasToken bool) {
@@ -75,7 +75,7 @@ func (s *Splitter) scanNext() {
     }
 
     // Parse the token
-    var currStringDelim rune = 0
+    var currStringDelim rune
 
     c := s.scanner.Next()
     for c != scanner.EOF {
@@ -93,7 +93,7 @@ func (s *Splitter) scanNext() {
     }
 }
 
-// Scans until the end of the string and return the remaining tokens as a slice.  If no
+// Split scans until the end of the string and return the remaining tokens as a slice.  If no
 // more tokens are present, this returns an empty slice.
 func (s *Splitter) Split() []string {
     tokens := make([]string, 0)
