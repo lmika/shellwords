@@ -5,6 +5,23 @@ A simple string tokenizer for Go, inspired by Ruby's
 
 Shellwords supports tokens separated by whitespace or delimited by single or double quotes.
 
-        go get github.com/lmika/shellwords
+To get:
+
+```
+go get github.com/lmika/shellwords
+```
+
+To use:
+
+```go
+package main
+
+import "fmt"
+import "shellwords"
+
+func main() {
+    shellwords.Split("these 'a three' tokens")  // ["these", "a three", "tokens"]
+}
+```
 
 Documentation at http://godoc.org/github.com/lmika/shellwords
